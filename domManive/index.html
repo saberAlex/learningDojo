@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Demo: DOM Functions</title>
+        <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"
+            data-dojo-config="async: true">
+        </script>
+        <script>
+            require(["dojo/domReady!"], function() {
+
+            });
+        </script>
+    </head>
+    <body>
+        <h1>I will be destroyed:</h1>
+        <ul id="listDestroyed">
+            <li>The very sad true...</li>
+        </ul>
+        <img src="./img/kupo.gif" id="imageKupo">
+        <ul id="list">
+            <li id="one">One</li>
+            <li id="two">Two</li>
+            <li id="three">Three</li>
+            <li id="four">Four</li>
+            <li id="five">Five</li>
+        </ul>
+        <button id="destroy">Destroy</button>
+    <script>
+    require(["dojo/dom", "dojo/domReady!"], function(dom){
+        function setText(nodeId, text){
+            node = dom.byId(nodeId);
+            node.innerHTML = text;
+        }
+
+        var one = dom.byId("one");
+        setText(one, "One hads been set");
+        setText("three", "I'm setting the value of three");
+
+    });
+    </script>
+    <script type="text/javascript" src="app.js"></script>
+    </body>
+</html>
