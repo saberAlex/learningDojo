@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>HELLO DOJO</title>
+	<style>
+		.modelClass1 {
+		  font-weight: bold;
+		  color: firebrick;
+	}
+	.modelClass2 {
+		  font-style: italic;
+	}
+	</style>
+</head>
+<body>
+	<h1 id="greeting"> Hello </h1>
+	<h1 class="greeting2" id="greet"> Hello </h1>
+		<h1 class="greeting2"> Hello </h1>
+		<button id="button1" type="button">Add class</button>
+	<script>
+		var dojoConfig = {
+			async: true,
+			packages: [{
+				name : "demo",
+				location: location.pathname.replace(/\/[^/]*$/, '') + '/demo'
+			}]
+		};
+	</script>
+    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script>
+    <script>
+    require([
+    	"demo/myModule",
+    	"dojo/dom-class",
+    	"dojo/dom",
+    	"dojo/on",
+    	'dojo/fx',
+    	"dojo/domReady"
+    	], function(myModule, domClass, dom, on, fx){
+    		myModule.setText("greeting", "Hi there!!");
+    		setTimeout(function() {
+    			myModule.restoreText("greeting");
+    		}, 3000);
+
+    		var greeting = dom.byId("greet");
+    		setTimeout(function() {
+    			greeting.innerHTML += " Lucareto!!";
+    		});
+
+    		on(dom.byId("button1"), "click", function(){
+    		    domClass.add("greet", "modelClass1");
+    		    fx.slideTo({
+    		           node: greeting,
+    		           top: 100,
+    		           left: 200
+    		       }).play();
+
+    		});
+    	});
+    </script>
+</body>
+</html>
