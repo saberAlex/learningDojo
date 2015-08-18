@@ -42,33 +42,55 @@
 	</head>
 
 	<body>
-
 	<div id="authorContainer"></div>
+	<div id="buttonContainer"></div>
+	<button id="reveal">Reveal authors</button>
+
 	<script>
 	// Bring in our custom widget
-				require(["dojo/request", "dojo/dom", "dojo/_base/array", "myApp/widget/AuthorWidget", "dojo/domReady!"],
-					function(request, dom, arrayUtil, AuthorWidget){
+				require(["dojo/request", "dojo/dom", "dojo/dom-construct", "dojo/on", "dijit/registry", "dojo/_base/array", "myApp/widget/AuthorWidget", "dojo/domReady!"],
+					function(request, dom, domConstruct, on, registry, arrayUtil, AuthorWidget){
 						// Load up our authors
 							authors = [
 										{
 											"name": "Luca",
 											"alias": "Lucareto",
-											"bio": "Oblivion"
+											"bio": "Oblivion",
+											"counter" : 0
 
 										},
 										{
 											"name":"Jin Lee",
 											"alias": "JL",
 											"avatar":"myApp/widget/images/jin.jpg",
-											"bio": "OathKeeper <a href='http://lucareto.co.uk'>testing</a>"
+											"bio": "OathKeeper <a href='http://lucareto.co.uk'>testing</a>",
+											"counter": 0
 										}
 									];
 							var authorContainer = dom.byId("authorContainer");
+							var buttonContainer = dom.byId("buttonContainer");
 
 							arrayUtil.forEach(authors, function(author){
-								// Create our widget and place it
-								console.log(author);
-								var widget = new AuthorWidget(author).placeAt(authorContainer);
+								var widget = new AuthorWidget(author); 
+							});
+
+							for(var i = 0; i < authors.length; i++){
+								domConstruct.create("button", {
+									innerHTML: i,
+									id: "button" + i
+								}, buttonContainer);
+
+								on(dom.byId("button"+i), "click", function(i) {
+									domConstruct.empty("authorContainer");
+									 var widget = registry.byId("dijit__TemplatedMixin_"+ i).placeAt(authorContainer);
+									 console.log(registry.byId("dijit__TemplatedMixin_"+ i).nameNode.innerHTML);
+									 authors[i].counter = registry.byId("dijit__TemplatedMixin_"+ i).counterNode.innerHTML;
+									 console.log(authors[i]);
+								}.bind(this, i));
+							}
+
+							on(dom.byId("reveal"), "click", function() {
+								console.log(authors);
 							});
 						});
 
