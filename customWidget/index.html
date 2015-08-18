@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html >
+<head>
+		<script>
+			 var dojoConfig = (function(){
+				var base = location.href.split("/");
+				base.pop();
+				base = base.join("/");
+				return {
+					async: true,
+					isDebug: true,
+					packages: [{
+						name: "myApp",
+						location: base + "/myApp"
+					}]
+				};
+			})();
+		</script>
+		<script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script>
+		<style>
+		.authorWidget {
+		border: 1px solid black;
+		width: 400px;
+		padding: 10px;
+		overflow: hidden; /* I hear this helps clear floats inside */
+		}
+		 
+		.authorWidget h3 {
+		font-size: 1.5em;
+		font-style: italic;
+		text-align: center;
+		margin: 0px;
+		}
+		 
+		.authorWidgetAvatar {
+		float: left;
+		margin: 4px 12px 6px 0px;
+		max-width: 75px;
+		max-height: 75px;
+		}
+		</style>
+	</head>
+
+	<body>
+
+	<div id="authorContainer"></div>
+	<script>
+	// Bring in our custom widget
+				require(["dojo/request", "dojo/dom", "dojo/_base/array", "myApp/widget/AuthorWidget", "dojo/domReady!"],
+					function(request, dom, arrayUtil, AuthorWidget){
+						// Load up our authors
+							authors = [
+										{
+											"name": "Luca",
+											"alias": "Lucareto",
+											"bio": "Oblivion"
+
+										},
+										{
+											"name":"Jin Lee",
+											"alias": "JL",
+											"avatar":"myApp/widget/images/jin.jpg",
+											"bio": "OathKeeper <a href='http://lucareto.co.uk'>testing</a>"
+										}
+									];
+							var authorContainer = dom.byId("authorContainer");
+
+							arrayUtil.forEach(authors, function(author){
+								// Create our widget and place it
+								console.log(author);
+								var widget = new AuthorWidget(author).placeAt(authorContainer);
+							});
+						});
+
+	</script>
+	</body>
+	</html>

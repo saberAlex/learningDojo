@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<link rel="stylesheet" type="text/css" href="./js/dijit/themes/claro/claro.css">
+	<link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.css">
+	<script>dojoConfig = {parseOnLoad: false}</script>
+	<script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script>
+	<style>
+
+	.businessCard {
+	    border: 3px inset gray;
+	    margin: 1em;
+	}
+	.employeeName {
+	    color: blue;
+	}
+	.specialEmployeeName {
+	    color: red;
+	}
+
+
+	</style>
+	<script>
+	require([
+	     "dojo/_base/declare","dojo/dom-style", "dojo/dom-construct", "dojo/parser", "dojo/ready",
+	     "dijit/_WidgetBase", "dijit/_TemplatedMixin"
+	 ], function(declare, domStyle, domConstruct, parser, ready, _WidgetBase, _TemplatedMixin){
+	    declare("Counter", [_WidgetBase], {
+	        // counter
+	        _i: 0,
+
+	        buildRendering: function(){
+	            // create the DOM for this widget
+	            this.domNode = domConstruct.create("button", {innerHTML: this._i, class: "btn btn-danger"});
+	        },
+	        //Note that postCreate() is called after buildRendering() is finished, and is typically usedfor  connections etc. that can be done until dom tree hass created
+	        postCreate: function(){
+	            // every time the user clicks the button, increment the counter
+	            this.connect(this.domNode, "onclick", "increment");
+	        },
+
+	        increment: function(){
+	            this.domNode.innerHTML = ++this._i;
+	        }
+	    });
+
+	    declare("HidePane", [_WidgetBase], {
+	        // parameters
+	        open: true,
+
+	        _setOpenAttr: function(/*Boolean*/ open){
+	            this._set("open", open);
+	            domStyle.set(this.domNode, "display", open ? "block" : "none");
+	        }
+	    });
+
+	    //create using template:
+	    declare("FancyCounter", [_WidgetBase, _TemplatedMixin], {
+	    	_i : 0,
+	    	 templateString: "<div>" +
+             "<button data-dojo-attach-event='onclick: increment'>press me</button>" +
+             "&nbsp; count: <span data-dojo-attach-point='counter'>0</span>" +
+             "</div>",
+
+         increment: function(){
+         	//this is where we set the value of counter.. into span object. 
+             this.counter.innerHTML = ++this._i;
+         }
+	    })
+
+	    ready(function(){
+	        // Call the parser manually so it runs after our widget is defined, and page has finished loading
+	        parser.parse();
+	    });
+	});
+
+	</script>
+	</head>
+	<body class="claro">
+	    	<span data-dojo-type="Counter"></span>
+	    	<div class="container">
+	    	<div class="row"></div>
+	    		<span data-dojo-type="FancyCounter">press me</span>
+	    		<!--span data-dojo-type="BusinessCard" data-dojo-props = "name: 'John Smith', phone: '123456789', nameClass: 'specialEmployeeName'"></span>
+	    		<span data-dojo-type="BusinessCard" data-dojo-props = ""></span-->
+	    		<div class="col-6-md">
+	    			
+	    			<span data-dojo-type="HidePane" data-dojo-props="open:false" data-dojo-id="pane">This pane is initially hidden</span>
+	    			<button onclick="pane.set('open', true);">show</button>
+	    			<button onclick="pane.set('open', false);">hide</button>
+
+
+	    			<div data-dojo-type="dijit/form/Button">
+	    			  <script type="dojo/connect" data-dojo-event="onClick" data-dojo-args="evt">
+	    			    alert('Woohoo! Im using the extension point "onClick"!!');
+	    			  </script>
+	    			   press me
+	    			</div>
+
+
+	    		</div>
+	    	</div>
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+	    <!--script type="text/javascript" src="./second.js"></script-->
+	</body>
+	</html>

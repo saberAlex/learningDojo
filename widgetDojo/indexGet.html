@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<link rel="stylesheet" type="text/css" href="./js/dijit/themes/claro/claro.css">
+	<script>dojoConfig = {parseOnLoad: false}</script>
+	<script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script>
+		<script>
+	dojo.require("dojox.dtl.Inline");
+		</script>
+	</head>
+	<body class="claro">
+	    <div data-dojo-type="dojox.dtl.Inline" id="inline" data-dojo-props="context:{items: ['apple', 'banana', 'orange']}">
+	  <ul>
+	    {% for item in items %}
+	      <li>{{item}}</li>
+	    {% endfor %}
+	  </ul>
+	</div>
+	</body>
+	</html>
