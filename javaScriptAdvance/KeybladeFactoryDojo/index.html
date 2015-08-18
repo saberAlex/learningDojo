@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./style.css">
+	<title>Udacity - Note exercise - DOJO</title>
+	<script>
+				 var dojoConfig = (function(){
+					var base = location.href.split("/");
+					base.pop();
+					base = base.join("/");
+					return {
+						async: true,
+						isDebug: true,
+						packages: [{
+							name: "keybladeFactory",
+							location: base
+						}]
+					};
+				})();
+	</script>
+	<script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script>
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<input type="text" id="inputNote" name="note" value="enter notes..">
+			<button id="addNote" class="btn btn-info">Add Notes...</button>	
+			<div id="simpleWidgetContainer"></div>
+		</div>
+	</div>
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./app.js"></script>
+</body>
+</html>

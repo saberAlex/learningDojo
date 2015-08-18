@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="keybladeFactory">
+  <head>
+  <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="./style.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+  </head>
+  <body ng-controller="mainCtrl">
+    <div class="container"> 
+    <div class="row">
+      <input type="text" ng-model="currentNote">
+      <a class="btn btn-info" ng-click="addNote()">add Note</a>
+      <div ng-repeat="(key,item) in items" ng-click="removeNote(key)" class="well"> 
+        <p>{{item.name}}</p>
+        <p>{{item.createdDate}}</p>
+      </div>
+    </div>
+    </div>
+
+  </body>
+</html>
