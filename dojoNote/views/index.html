@@ -1,0 +1,188 @@
+<!doctype html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en" data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+<head>
+  <title>Dojo Note</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/foundation/css/foundation.css">
+  <style type="text/css">
+  	/* bring in the claro theme */
+  	@import "http://ajax.googleapis.com/ajax/libs/dojo/1.5/dijit/themes/claro/claro.css";
+
+  	/* bring in the widget-specific CSS classes */
+  	@import "http://ajax.googleapis.com/ajax/libs/dojo/1.5/dijit/themes/claro/layout/ContentPane.css";
+  	@import "http://ajax.googleapis.com/ajax/libs/dojo/1.5/dijit/themes/claro/layout/TabContainer.css";
+  	@import url(http://fonts.googleapis.com/css?family=Tillana:400,500,800);
+	* {
+	  font-family: 'Tillana', cursive;
+	}
+	h1 {
+	  font-family: 'Tillana', cursive;
+	  font-weight: bold;
+	}
+  </style>
+
+  <script>
+  			 var dojoConfig = (function(){
+  				var base = location.href.split("/");
+  				base.pop();
+  				base = base.join("/");
+  				return {
+  					async: true,
+  					isDebug: true,
+  					packages: [{
+  						name: "keybladeFactory",
+  						location: base
+  					}],
+  					parseOnLoad:true
+  				};
+  			})();
+  </script>
+  <style>
+
+  </style>
+  <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script>
+</head>
+<body class="claro">
+<nav class="top-bar" data-topbar>
+	<ul class="title-area">
+		<li class="name">
+		<h1><a href="#">Dojo Note</a></h1>
+		</li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+	</ul>
+<section class="top-bar-section">
+	<ul class="right">
+		<li class="divider"></li>
+		<li class="has-dropdown">
+			<a href="#">Category</a>
+			<ul class="dropdown" id="categoryContainer">
+				<li><a href="#">Create Category &rarr;</a></li>
+				<li><a href="#">Create new Notes &rarr;</a></li>
+				<li class="divider"></li>
+			</ul>
+		</li>
+	</ul>
+</section>
+</nav>
+
+<a class="button tiny expand" id="showNotes">display notes</a>
+
+<div class="row" id="todoLink">
+<!-- will set the eventual dimensions for the tab container -->
+<div class="large-3 columns">
+<div style="width:200px;height:300px">	
+	<!-- will host all tabs and their content panes -->
+	<div dojoType="dijit.layout.TabContainer" id="tabContainer" style="width:100%;height:100%;">		
+		<!-- content panes: title is tab name, make this tab selected -->
+		<div dojoType="dijit.layout.ContentPane" title="Rod Stewart" selected="true" id="todoContainer">			
+		</div>
+		
+		<!-- content panes: title is tab name, no special features here -->
+		<div dojoType="dijit.layout.ContentPane" title="Oasis" id="linkContainer">
+			<a id="test" class="button expand tiny">Expanded Button</a>
+			<a href="#" class="button expand tiny">Expanded Button</a>
+			<a href="#" class="button expand tiny">Expanded Button</a>
+			<a href="#" class="button expand tiny">Expanded Button</a>
+			<a href="#" class="button expand tiny">Expanded Button</a>
+		</div>			
+	</div>
+</div>
+</div>
+<div class="large-6 columns">
+<p>Hello</p>
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+</p>
+<p>HELLO THETETE D</p>
+
+<a href="#" class="button  tiny">Delete</a>
+<a href="#" class="button  tiny">Completed</a>
+
+</div>
+<div class="large-3 columns">
+<div data-dojo-type="dijit/form/Form" id="myFormThree" data-dojo-id="myFormThree"
+encType="multipart/form-data" action="" method="">
+    <script type="dojo/method" data-dojo-event="validate">
+       return dojo.query('INPUT[name=order]', 'myFormThree').filter(function(n){return n.checked;}).length > 0 &&
+       dijit.form.Form.prototype.validate.apply(this, arguments);
+    </script>
+    <script type="dojo/method" data-dojo-event="onSubmit">
+        require(["dojo/dom"], function(dom){
+            var f = dom.byId("myFormThree");
+            var s = "";
+            for(var i = 0; i < f.elements.length; i++){
+                var elem = f.elements[i];
+                if(elem.name == "button"){ continue; }
+                if(elem.type == "radio" && !elem.checked){ continue; }
+                s += elem.name + ": " + elem.value + "\n";
+            }
+            alert("Unvalidated data that would be submitted:\n" + s);
+        });
+        return false;
+    </script>
+    <table style="border: 1px solid #9f9f9f;" cellspacing="10">
+        <tr>
+            <td>
+                <label for="name">Name:</label>
+            </td>
+            <td>
+                <input type="text" name="name" required="true" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="info">Info:</label>
+            </td>
+            <td>
+                <textarea name="info" required="true"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="dob">type:</label>
+            </td>
+            <td>
+                <input type="radio" name="order" value="Food"> link
+                <input type="radio" name="order" value="Drinks"> todo
+            </td>
+        </tr>
+          <tr>
+            <td>
+                <label for="dob">deadline</label>
+            </td>
+            <td>
+                <input type="date" id="dob" name="dob"/>
+            </td>
+        </tr>
+    </table>
+
+    <button data-dojo-type="dijit/form/Button" onClick="alert('Form is ' + (myFormThree.validate()?'':'not ') + 'valid');return false">
+        Validate form
+    </button>
+    <button data-dojo-type="dijit/form/Button" type="submit" name="submitButtonThree" value="Submit">Submit</button>
+    <button data-dojo-type="dijit/form/Button" type="reset">Reset</button>
+</div>
+</div>
+
+</div>
+
+<div class="large-12 columns">
+<h1>List of Notes</h1>
+
+<p>Hello</p>
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+</p>
+<p>HELLO THETETE D</p>
+
+<a href="#" class="button  tiny">Delete</a>
+<a href="#" class="button  tiny">Completed</a>
+
+
+</div>
+
+
+</div>
+ <script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>
