@@ -19,10 +19,18 @@
 	* {
 	  font-family: 'Tillana', cursive;
 	}
-	h1 {
+	h1, h2 {
 	  font-family: 'Tillana', cursive;
 	  font-weight: bold;
 	}
+  .todoLinkWidget {
+    border: 1px solid black;
+    width: 400px;
+    padding: 10px;
+    overflow: hidden; /* I hear this helps clear floats inside */
+    display: block;
+    background-color: pink;
+  }
   </style>
 
   <script>
@@ -34,8 +42,8 @@
   					async: true,
   					isDebug: true,
   					packages: [{
-  						name: "keybladeFactory",
-  						location: base
+  						name: "dojoNode",
+  						location: base + "/js"
   					}],
   					parseOnLoad:true
   				};
@@ -45,6 +53,7 @@
   <style>
 
   </style>
+  <script type="text/javascript" src="js/parseData.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script>
 </head>
 <body class="claro">
@@ -100,8 +109,8 @@
 	<a id="createNewCategory" class="button  tiny">create new category</a>
 </div>
 
-<div id="todoLinkContainer">
-<p>Hello</p>
+<div id="todoLinkContainer" class="todoLinkWidget">
+<h2>Hello</h2>
 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 </p>
 <p>HELLO THETETE D</p>
@@ -294,20 +303,6 @@ encType="multipart/form-data" action="" method="">
 </div>
 </div>
 <script type="text/javascript">
-
-	var Categories = Parse.Object.extend("Categories");
-	var categoryQuery = new Categories();
-	var categories;
-	var mainCategory = "unknown";
-	categoryQuery.fetch({
-	  success: function(myObject) {
-	    categories = myObject._serverData.results;
-	  },
-	  error: function(myObject, error) {
-	  	alert(error);
-	  }
-	});
-
 
 	require(["dojo/dom", "dojo/on", "dojo/query"], function(dom, on, $){
 		var buttonCreateCategory = dom.byId("createNewCategory");
