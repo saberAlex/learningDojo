@@ -1,0 +1,27 @@
+[
+	{
+		"id": 0,
+		"name": "Knight",
+		"url": "img/job/knight.png",
+		"counter": 0
+	},
+	{
+		"id": 1,
+		"name": "Wizard",
+		"url": "img/job/wizard.png",
+		"counter": 0
+	},
+	{
+		"id": 2,
+		"name": "Ninja",
+		"url": "img/job/ninja.png",
+		"counter": 0
+	},
+	{
+		"id": 3,
+		"name": "Hunter",
+		"url": "img/job/hunter.png",
+		"counter": 0
+	}
+
+]
