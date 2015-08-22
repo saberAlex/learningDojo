@@ -1,0 +1,14 @@
+  	@import "http://ajax.googleapis.com/ajax/libs/dojo/1.5/dijit/themes/claro/claro.css";
+  	@import "http://ajax.googleapis.com/ajax/libs/dojo/1.5/dijit/themes/claro/layout/ContentPane.css";
+  	@import "http://ajax.googleapis.com/ajax/libs/dojo/1.5/dijit/themes/claro/layout/TabContainer.css";
+  	@import url(http://fonts.googleapis.com/css?family=Tillana:400,500,800);
+	body {
+		padding-top: 50px;
+	}
+	* {
+	  font-family: 'Tillana', cursive;
+	}
+	h1, h2 {
+	  font-family: 'Tillana', cursive;
+	  font-weight: bold;
+	}

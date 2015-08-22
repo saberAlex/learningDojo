@@ -1,0 +1,19 @@
+[
+	{
+		"name": "Knight",
+		"url": "img/job/knight.png"
+	},
+	{
+		"name": "Wizard",
+		"url": "img/job/wizard.png"
+	},
+	{
+		"name": "Ninja",
+		"url": "img/job/ninja.png"
+	},
+	{
+		"name": "Hunter",
+		"url": "img/job/hunter.png"
+	}
+
+]
