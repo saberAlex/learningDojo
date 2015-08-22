@@ -1,0 +1,17 @@
+ @import url(http://fonts.googleapis.com/css?family=Tillana:400,500,800);
+
+
+body {
+  font-family: 'Tillana', cursive;
+  margin-top: 350px;
+}
+
+ #map {
+        width:80%;
+        height: 50%;
+        position:absolute;
+        right: 10%;
+        top:50px;
+        bottom:0;
+        overflow:hidden;
+  }

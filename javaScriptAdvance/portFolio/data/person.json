@@ -1,0 +1,21 @@
+{
+	"name" : "Luca",
+	"email": "luciaagastya@gmail.com",
+	"blog" : "lucareto.co.uk",
+	"bio"  : "a very cool kid",
+	"pet": [
+		{
+			"id": "pet01",
+			"name": "Jin Lee",
+			"avatar" : "img/jinlee.gif",
+			"happy": 0
+		}, 
+		{
+			"id" : "pet02",
+			"name": "Chioki",
+			"avatar" : "img/chioki.jpg",
+			"happy": 0
+		}
+	], 
+	"places" : ["Jakarta", "St. Andrews", "Kyoto", "Kuala Lumpur", "Berlin", "Paris", "Sevilla Spain"]
+}
